@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../db'); // Ensure the path is correct
+const sequelize = require('../db');
 
 class TravelRoute extends Model {}
 

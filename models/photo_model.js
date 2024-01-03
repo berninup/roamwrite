@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('..db.js');
+const sequelize = require('../db');
 
 class Photo extends Model {}
 
@@ -9,8 +9,8 @@ Photo.init({
         type: DataTypes.INTEGER,
         allowNull: true, 
         references: {
-            model: 'blog_post', 
-            key: 'blog_post_id' 
+            model: 'blog_posts', 
+            key: 'id' 
         }
     },
     url: {

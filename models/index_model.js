@@ -30,3 +30,11 @@ Blog_Post.hasMany(Photo, {
     foreignKey: 'blog_post_id',
     as: "photo_model"
 })
+
+module.exports = {
+    User,
+    Blog_Post,
+    Comment,
+    Photo,
+    Travel_Route
+}
