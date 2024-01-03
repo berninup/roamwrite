@@ -13,3 +13,4 @@ const Travel_Route = sequelize.define('travel_route', {
     }
 })
 
+module.exports = Travel_Route

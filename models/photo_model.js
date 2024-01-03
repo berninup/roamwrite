@@ -1,29 +1,25 @@
 const Sequelize = require('sequelize')
 const sequelize = require('..db.js')
 
-const Comment = sequelize.define('comment', {
-    comment_id: {
+const Photos = sequelize.define('photos', {
+    photo_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    content: Sequelize.STRING,
-    user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'user',
-            key: 'user_id'
-        }
-    },
     blog_post_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'blog_post',
             key: 'blog_post_id'
         }
-    }
+    },
+    url: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    description: Sequelize.STRING
 })
 
-module.exports = Comment
+module.exports = Photo
