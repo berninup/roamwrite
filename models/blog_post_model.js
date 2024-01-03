@@ -1,14 +1,20 @@
-const Sequelize = require('sequelize')
-const sequelize = require('..db.js')
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('..db.js'); // Make sure the path is correct
 
-const Blog_Post = sequelize.define('blog_post', {
-    blog_post_id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+class BlogPost extends Model {}
+
+BlogPost.init({
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false 
     },
-    title: Sequelize.STRING,
-    content: Sequelize.STRING
-})
+    content: {
+        type: DataTypes.TEXT, 
+        allowNull: false 
+    }    
+}, {
+    sequelize, 
+    modelName: 'blog_post',     
+});
 
-module.exports = Blog_Post
+module.exports = BlogPost;

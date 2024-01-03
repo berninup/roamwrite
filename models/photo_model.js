@@ -1,25 +1,28 @@
-const Sequelize = require('sequelize')
-const sequelize = require('..db.js')
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('..db.js');
 
-const Photos = sequelize.define('photos', {
-    photo_id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    blog_post_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
+class Photo extends Model {}
+
+Photo.init({
+    
+    blogPostId: {
+        type: DataTypes.INTEGER,
+        allowNull: true, 
         references: {
-            model: 'blog_post',
-            key: 'blog_post_id'
+            model: 'blog_post', 
+            key: 'blog_post_id' 
         }
     },
     url: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
-    description: Sequelize.STRING
-})
+    description: {
+        type: DataTypes.STRING        
+    }    
+}, {
+    sequelize,
+    modelName: 'photo',     
+});
 
-module.exports = Photo
+module.exports = Photo;

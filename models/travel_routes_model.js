@@ -1,16 +1,16 @@
-const Sequelize = require('sequelize')
-const sequelize = require('..db.js')
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../db'); // Ensure the path is correct
 
-const Travel_Route = sequelize.define('travel_route', {
-    travel_route_id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    // Route_Data WIP
+class TravelRoute extends Model {}
+
+TravelRoute.init({
+    
     route_data: {
-        type: Sequelize.GEOMETRY('LINESTRING')
-    }
-})
+        type: DataTypes.GEOMETRY('LINESTRING') 
+    }    
+}, {
+    sequelize,
+    modelName: 'travel_route',     
+});
 
-module.exports = Travel_Route
+module.exports = TravelRoute;
