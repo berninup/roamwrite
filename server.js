@@ -3,6 +3,7 @@ const session = require('express-session')
 const passport = require('passport')
 const userRoutes = require('./routes/user_routes')
 const blogRoutes = require('./routes/blog_routes')
+const photoRoutes = require('./routes/photo_routes')
 
 
 const app = express()
@@ -22,6 +23,7 @@ app.use(passport.session())
 
 app.use('/users', userRoutes)
 app.use('/blog', blogRoutes)
+app.use('/photo', photoRoutes)
 
 app.listen(3000, () => {
     console.log('Server is running')
