@@ -50,4 +50,35 @@ router.put('/update/:postId', async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 })
+
+router.get('/posts', async (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({ message: 'User not authenticated' })
+    }
+
+    try {
+        const userId = req.session.passport.user        
+
+        const blogPosts = await Blog_Post.findAll({
+            where: { userId: userId }
+        })
+        res.json(blogPosts)
+    } catch (error) {
+        res.status(500).json({ error: error })
+    }
+})
+
+router.get('/posts/:blogPostId' , async (req, res) => {
+    try {
+        const blogPostId = req.params.blogPostId
+        const blogPost = await Blog_Post.findByPk(blogPostId)
+
+        res.json(blogPost)
+    } catch(error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
+
+
 module.exports = router
