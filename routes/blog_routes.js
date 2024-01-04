@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Blog_Post = require('../models/blog_post_model')
+const { Blog_Post } = require('../models/index_model')
 
 
 router.post('/create', async (req, res) => {
@@ -24,4 +24,30 @@ router.post('/create', async (req, res) => {
     }
 })
 
+
+router.put('/update/:postId', async (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({ message: 'User is not authenticated' })        
+    }
+
+    try {
+        const { title, content } = req.body
+        const postId = req.params.postId
+        const userId = req.user.id
+
+        const post = await Blog_Post.findOne({ where: { id: postId, userId: userId } })
+
+        if (!post) {
+            return res.status(404).json({ message: 'Blog post not found or not owned by user' })
+        }
+
+        post.title = title
+        post.content = content
+        await post.save()
+
+        res.json({ message: 'Blog post udated successfully', post })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
 module.exports = router

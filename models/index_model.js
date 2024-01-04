@@ -29,5 +29,6 @@ module.exports = {
     Blog_Post,
     Comment,
     Photo,
-    Travel_Route
+    Travel_Route,
+    sequelize
 }

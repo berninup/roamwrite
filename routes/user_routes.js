@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user_model");
+const { User } = require("../models/index_model");
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 
@@ -51,7 +51,6 @@ router.get("/profile", (req, res) => {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-
       const userProfile = {
         username: user.username,
         email: user.email,
