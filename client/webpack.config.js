@@ -1,11 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js', // entry point for your React application
+  entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, "/build"),
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -13,14 +13,21 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: "./public/index.html",
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    port: 8080,
+  },
 };
