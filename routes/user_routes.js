@@ -21,6 +21,14 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
   });
 
+  router.get('/auth-check', (req, res) => {
+    if (req.isAuthenticated()) {
+      return res.status(200).json({ isLoggedIn: true, user: req.user });
+    } else {
+      return res.status(200).json({ isLoggedIn: false });
+    }
+  });
+
 router.post("/create", async (req, res) => {
   try {
     const { username, email, password } = req.body;
