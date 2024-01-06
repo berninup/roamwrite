@@ -46,11 +46,15 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
+router.get("/logout", (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
     }
+    req.session.destroy((err) => {
+      return next(err)
+    })
+    res.clearCookie('connect.sid')
     res.json({ message: "You have been successfully logged out." });
   });
 });
