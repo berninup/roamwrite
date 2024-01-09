@@ -1,5 +1,5 @@
 const sequelize = require('../db')
-const  { User, Comment, Photo, Travel_Route, Blog_Post } = require('../models/index_model')
+const  { User, Comment, Travel_Route, Blog_Post } = require('../models/index_model')
 
 
 sequelize.sync({ force: false })

@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../db'); // Make sure the path is correct
+const sequelize = require('../db'); 
 
 class BlogPost extends Model {}
 
@@ -11,7 +11,10 @@ BlogPost.init({
     content: {
         type: DataTypes.TEXT, 
         allowNull: false 
-    }    
+    },
+    photoUrl: {
+        type: DataTypes.STRING,        
+    },    
 }, {
     sequelize, 
     modelName: 'blog_post',     

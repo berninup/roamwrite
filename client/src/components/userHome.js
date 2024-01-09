@@ -19,12 +19,31 @@ function UserHome({ setIsLoggedIn }) {
   }, []);
   return (
     <div>
-      User Home
-      {blogPosts &&
-        blogPosts.map((post) => (
-          <div key={post.id}>{post.title}</div> // Assuming post has a title property
-        ))}
-      <LogoutButton setIsLoggedIn={setIsLoggedIn} />
+      <div className="columns">
+        <div className="column greenColumn"></div>
+        <div className="column is-two-thirds">
+          {blogPosts &&
+            blogPosts.map((post) => (
+              <div key={post.id} className="box block">
+                <table>
+                  <thead>
+                    <tr>
+                    <th>{post.title}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>{post.content}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            ))}
+        </div>
+        <div className="column">
+          
+        </div>
+      </div>
     </div>
   );
 }

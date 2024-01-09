@@ -20,7 +20,7 @@ function LogoutButton({ setIsLoggedIn }) {
         console.error("Logout failed: ", error);
       });
   };
-  return <button onClick={handleLogout}>Logout</button>;
+  return <button className="button is-small" onClick={handleLogout}>Logout</button>;
 }
 
 export default LogoutButton;
